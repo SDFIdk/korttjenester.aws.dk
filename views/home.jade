@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  div.container
+    h1 AWS 4 Korttjenester
+    div.page-header
+      p.lead Korttjenesterne i AWS Suitens version 4
+
+  div.container
+    div.row
+
+      div.col-md-12
+        h2 Hvad er AWS 4 Korttjenester?
+        p AWS 4 Korttjenester er en del af <a href='http://aws.dk'>AWS Suiten version 4</a>. Formålet med korttjenesten er at præsentere adresser på et kort og anvendes typisk af GIS programmer som f.eks. QGIS. 
+        p AWS 4 Korttjenester tilbyder to typer services:
+        ul
+          li Web Map Service (WMS), som leverer kortudsnit (bitmaps). Læs mere <a href='wms'>her</a>.
+          li Web Feature Service (WFS), som leverer geografiske data (features). Læs mere <a href='wfs'>her</a>.
+
+block append scripts
+  script(type='text/javascript').
+    $('#topbar li').removeClass('active');
+    var a= $("#topbar li a[href='home']")[0];
+    var li= $(a).parent().addClass('active');

@@ -1,0 +1,48 @@
+extends layout
+
+block content
+	div.container
+		h1 WFS
+		div.page-header
+			p.lead AWS Suitens version 4 WFS korttjeneste.
+
+	div.container
+		div.row
+			div.col-md-3
+				ul#adresse.nav.nav-pills.nav-stacked.affix
+					li <a href='#wfs'>WFS</a>
+					li <a href='#qgis'>QGIS eksempel</a>
+
+
+			div.col-md-9
+				h2#wfs WFS
+				p AWS Suiten version 4 rummer en WFS tjeneste, som udstiller både adresser og adgangsadresser.
+				p WFS tjenestens capability-fil kan du finde på <a href='http://kort.aws.dk/geoserver/aws4_wfs/wfs?REQUEST=GetCapabilities'>http://kort.aws.dk/geoserver/aws4_wfs/wfs?REQUEST=GetCapabilities</a>
+
+				p Hvis du ønsker at anvende en sikker/krypteret forbindelse finder du capability-filen på <a href='https://kort.aws.dk/geoserver/aws4_wfs_secure/wfs?REQUEST=GetCapabilities'>https://kort.aws.dk/geoserver/aws4_wfs_secure/wfs?REQUEST=GetCapabilities</a>
+
+				h2#qgis QGIS eksempel
+				p Nedenfor gives et eksempel på hvorledes at AWS4 WFS tjenesten kan anvendes fra open source gis-programmet <a href='https://www.qgis.org/en/site/forusers/download.html'>QGIS</a>.
+
+				p Start QGIS - gerne version 2.4.0 eller nyere.
+				p Det er en god ide at have et baggrundskort til at se adresserne på. Baggrundskort kan du hente på <a href='http://kortforsyningen.dk/indhold/webtjenesteliste'>Kortforsyningen</a>.
+				p Vær sikker på at det valgte koordinatsystem er EPSG:25832 (ETRS89/UTM zone 32N).
+				p Vælg menupunktet <em>Lag -> Tilføj WFS-lag</em>.
+				p Klik på knappen <em>Ny</em>.
+				p Navn sættes til f.eks. <em>AWS 4 WFS</em>.
+				p URL sættes til <em>http://kort.aws.dk/geoserver/aws4_wfs/wfs</em>
+				img.img-responsive(src='images/QGISWFS10.png')
+				p Klik på <em>Ok</em>.
+				p Klik på <em>Forbind</em>.
+				p Fjern checkmark fra Cache Features. Hvis ikke forsøges at indlæse alle adresser på en gang, og det er ikke en god ide.
+				img.img-responsive(src='images/QGISWFS20.png')
+				p Klik på <em>Tilføj</em>.
+				p Klik på <em>Luk</em>.
+				p Zoom ind i kortet indtil adresserne vises.
+				img.img-responsive(src='images/QGISWFS30.png')
+
+block append scripts
+	script(type='text/javascript').
+		$('#topbar li').removeClass('active');
+		var a= $("#topbar li a[href='wfs']")[0];
+		var li= $(a).parent().addClass('active');

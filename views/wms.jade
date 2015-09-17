@@ -1,0 +1,77 @@
+extends layout
+
+block content
+	div.container
+		h1 WMS
+		div.page-header
+			p.lead WMS korttjenester i AWS Suitens version 4 til udstiling af Danmarks Adresser.
+
+	div.container
+		div.row
+			div.col-md-3
+				ul#adresse.nav.nav-pills.nav-stacked.affix
+					li <a href='#inspire'>INSPIRE WMS</a>
+					li <a href='#aws4'>AWS 4 WMS</a>
+					li <a href='#qgis'>QGIS eksempel</a>
+					li <a href='#mapinfo'>MapInfo Professional eksempel</a>
+
+
+			div.col-md-9
+				h2 WMS tjenesterme
+				p AWS Suite version 4 rummer to WMS tjenester. INSPIRE WMS er baseret på INSPIRE direktivet, som du kan læse mere om <a href='http://inspire-danmark.dk'>her</a>. AWS4 WMS er en udvidelse, som er rettet mod ønsker om at kunne vælge mellem flere forskelllige stilarter til adressemarkeringer.  
+
+				h2#inspire INSPIRE WMS
+				p AWS Suite version 4 rummer en INSPIRE Kompatibel WMS tjeneste. Denne tjeneste understøtter 2 stilarter:
+				ul
+					li <em>Default</em> - AD.Address Style Default, hvor adressepunkter renderes som en hvid 6x6 kvadrat med sort kant.
+					li <em>standard</em> - AD.Address Style (DK), hvor husnummeret vises med blå tekst og hvid halo. Husnummeret er drejet i forhold en tekstretning registreret til det enkelte adressepunkt.
+
+				p Capability-filen kan du finde på <a href='http://kort.aws.dk/geoserver/aws4_inspire/wms?REQUEST=GetCapabilities'>http://kort.aws.dk/geoserver/aws4_inspire/wms?REQUEST=GetCapabilities</a>
+
+				h2#aws4 AWS4 WMS
+				p AWS Suite version 4 rummer en WMS tjeneste, som understøtter et udvidet antal stilarter, med det formål at kunne vælge en adressemarkering, som passer bedst mulig til det anvendte baggrundskort. Tjeneste understøtter 6 stilarter:
+				ul
+					li <em>Standard</em> - Husnummer i blå tekst med hvid halo
+					li <em>StandardUdenVinkel</em> - Husnummer i blå tekst med hvid halo uden retningsvinkel
+					li <em>HvidMedHalo</em> - Husnummer i hvid tekst med sort halo
+					li <em>StandardStor</em> - Husnummer i blå tekst (stor) med hvid halo
+					li <em>SortUdenHalo</em> - Husnummer i sort tekst
+					li <em>SortMedHalo</em> -  Husnummer i sort tekst med hvid halo
+					li <em>HvidUdenHalo</em> - Husnummer i hvid tekst
+
+				p WMS tjenesten udstiller kun adgangsadresser - ikke adresser.
+
+				p Capability-filen kan du finde på <a href='http://kort.aws.dk/geoserver/aws4_wms/wms?REQUEST=GetCapabilities'>http://kort.aws.dk/geoserver/aws4_wms/wms?REQUEST=GetCapabilities</a>
+
+				p Hvis du ønsker at anvende en sikker/krypteret forbindelse finder du capability-filen på <a href='https://kort.aws.dk/geoserver/aws4_wms_secure/wms?REQUEST=GetCapabilities'>https://kort.aws.dk/geoserver/aws4_wms_secure/wms?REQUEST=GetCapabilities</a>
+
+				h2#qgis QGIS eksempel
+				p Nedenfor gives et eksempel på hvorledes at AWS4 WMS tjenesten kan anvendes fra open source gis-programmet <a href='https://www.qgis.org/en/site/forusers/download.html'>QGIS</a>.
+
+				p Start QGIS - gerne version 2.4.0 eller nyere.
+				p Det er en god ide at have et baggrundskort til at se adresserne på. Baggrundskort kan du hente på <a href='http://kortforsyningen.dk/indhold/webtjenesteliste'>Kortforsyningen</a>.
+				p Vær sikker på at det valgte koordinatsystem er EPSG:25832 (ETRS89/UTM zone 32N).
+				p Vælg menupunktet <em>Lag -> Tilføj WMS/WMTS-lag</em>.
+				p Klik på knappen <em>Ny</em>.
+				p Navn sættes til f.eks. <em>AWS 4 WMS</em>.
+				p URL sættes til <em>http://kort.aws.dk/geoserver/aws4_wms/wms</em>
+				img.img-responsive(src='images/QGISWMS10.png')
+				p Klik på <em>Ok</em>.
+				p Klik på <em>Forbind</em>.
+				p Udvid <em>Adgangsadresser</em> og vælg stilart. F.eks. <em>SortMedHalo</em>.
+				p Klik på <em>Tilføj</em>.
+				img.img-responsive(src='images/QGISWMS20.png')
+				p Klik på <em>Luk</em>.
+				p Zoom ind i kortet indtil adresserne vises.
+				img.img-responsive(src='images/QGISWMS30.png')
+
+				h2#mapinfo MapInfo Professional eksempel
+				p Du kan finde en detaljeret guide i, hvordan du bruger AWS 4's WMS tjeneste i MapInfo Professional på <a href='http://blogs.pitneybowes.dk/pbsoftware/2014/10/31/sadan-anvender-du-aws-wms-tjeneste-mapinfo-professional/'>Pitney Bowes web site</a>.
+
+
+
+block append scripts
+	script(type='text/javascript').
+		$('#topbar li').removeClass('active');
+		var a= $("#topbar li a[href='wms']")[0];
+		var li= $(a).parent().addClass('active');S
