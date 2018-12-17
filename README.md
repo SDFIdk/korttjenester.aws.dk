@@ -2,4 +2,8 @@
 
 AWS 4 Korttjenesters dokumentations web site.
 
-Node applikation.
+Node applikation:
+
+npm install
+
+npm start
