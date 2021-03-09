@@ -19,7 +19,7 @@
   },
   "subdomain": "korttjenester",
   "domains": [
-    "korttjenester.aws.dk"
+    "korttjenester.dataforsyningen.dk"
   ],
   "engines": {
     "node": "0.10.x"
